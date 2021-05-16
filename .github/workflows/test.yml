@@ -1,13 +1,15 @@
 name: 'build-test'
-on: # rebuild any PRs and main branch changes
-  pull_request:
+on:
   push:
     branches:
       - main
       - 'releases/*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build: # make sure build/ci work properly
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,10 +17,31 @@ jobs:
           npm install
       - run: |
           npm run all
-  test: # make sure the action works on a clean machine without building
+  test-using-default-dir:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          milliseconds: 1000
+          full_text: |
+            PROD=0
+            TEST=1
+  test-using-provided-dir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir __tests__/artifacts
+      - uses: ./
+        with:
+          directory: __tests__/artifacts
+          full_text: |
+            PROD=0
+            TEST=1
+  test-override-existing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo 'PROD=0' > __tests__/artifacts/.env
+      - uses: ./
+        with:
+          full_text: TEST=1
