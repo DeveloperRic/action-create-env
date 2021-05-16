@@ -32,6 +32,7 @@ jobs:
           full_text: |
             PROD=0
             TEST=1
+      - run: cat .env
       - run: egrep "^PROD=0/nTEST=1$" .env
   test-using-provided-dir:
     runs-on: ubuntu-latest
@@ -50,6 +51,7 @@ jobs:
           full_text: |
             PROD=0
             TEST=1
+      - run: cat __tests__/artifacts/.env
       - run: egrep "^PROD=0/nTEST=1$" __tests__/artifacts/.env
   test-override-existing:
     runs-on: ubuntu-latest
@@ -65,4 +67,5 @@ jobs:
       - uses: ./
         with:
           full_text: TEST=1
+      - run: cat .env
       - run: egrep "^TEST=1$" .env
