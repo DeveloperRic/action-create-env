@@ -35,7 +35,7 @@ test('creates .env', async () => {
     directory: ARTIFACTS_PATH,
     full_text: `
     PROD=0
-    TEST=1
+    TEST=1\n
     `
   }
   await writeEnv(args)

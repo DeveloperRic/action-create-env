@@ -16,7 +16,7 @@ export async function writeEnv(args: Args): Promise<void> {
       throw new Error(`Invalid directory input: ${args.directory} is not a directory.`)
     }
     const filePath = `${args.directory}/.env`
-    const text = dedent(args.full_text)
+    const text = dedent(args.full_text).trim()
     fs.writeFile(filePath, text, err => {
       if (err) return reject(err)
       resolve()
