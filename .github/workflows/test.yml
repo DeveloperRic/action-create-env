@@ -15,10 +15,20 @@ jobs:
           npm install
       - run: |
           npm run all
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
   test-using-default-dir:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
       - uses: ./
         with:
           full_text: |
@@ -26,8 +36,14 @@ jobs:
             TEST=1
   test-using-provided-dir:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
       - run: mkdir __tests__/artifacts
       - uses: ./
         with:
@@ -37,8 +53,14 @@ jobs:
             TEST=1
   test-override-existing:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
       - run: echo 'PROD=0' > __tests__/artifacts/.env
       - uses: ./
         with:
