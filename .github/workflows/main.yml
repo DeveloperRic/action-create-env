@@ -120,7 +120,3 @@ jobs:
           # The flag used on the pull strategy. Use NO-PULL to avoid the action pulling at all.
           # Default: '--no-rebase'
           pull_strategy: 'NO-PULL or --no-rebase or --no-ff or --rebase'
-
-          # The arguments for the `git rm` command (see the paragraph below for more info)
-          # Default: ''
-          remove: 'dist/**'
