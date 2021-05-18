@@ -119,4 +119,4 @@ jobs:
 
           # The flag used on the pull strategy. Use NO-PULL to avoid the action pulling at all.
           # Default: '--no-rebase'
-          pull_strategy: 'NO-PULL or --no-rebase or --no-ff or --rebase'
+          pull_strategy: 'NO-PULL'
