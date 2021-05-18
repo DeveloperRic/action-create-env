@@ -83,6 +83,6 @@ jobs:
         with:
           full_text: PROD=0
         env:
-          TEST: 1
+          ACTION_CREATE_ENV_TEST: 1
       - run: cat .env
       - run: grep -zP "^PROD=0\nTEST=1$" .env
