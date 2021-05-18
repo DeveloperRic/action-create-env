@@ -82,6 +82,7 @@ jobs:
       - uses: ./
         with:
           full_text: PROD=0
+          include_env_vars: true
         env:
           ACTION_CREATE_ENV_TEST: 1
       - run: cat .env
