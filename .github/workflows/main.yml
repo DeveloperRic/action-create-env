@@ -98,6 +98,8 @@ jobs:
       - test-using-provided-dir
       - test-override-existing
       - test-including-env-vars
+    # it's ok if it fails, we can deploy manually
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
