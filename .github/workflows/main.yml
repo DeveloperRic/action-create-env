@@ -1,4 +1,4 @@
-name: 'built-test-deploy'
+name: 'build-test-deploy'
 on:
   pull_request:
     paths-ignore:
